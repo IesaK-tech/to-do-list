@@ -11,6 +11,13 @@ const notification = document.getElementById("notification");
 
 addButton.addEventListener("click", addTask);
 
+input.addEventListener("keydown", function (event) {
+    if (event.key === "Enter") {
+        event.preventDefault();
+        addTask();
+    }
+})
+
 function addTask() {
     const taskText = input.value;
 
@@ -55,16 +62,24 @@ function addTask() {
 
 
     editImg.addEventListener("click", function () {
+
         if (editImg.alt === "Edit") {
             // this switches to edit mode when I press the edit button
             editImg.alt = "Save";
             editImg.src = "https://icon-library.com/images/2018/1740647_tick-mark-check-icon-transparent-png.png";
 
-            // Adds an input field so
+            // Adds an input field so that i can text and edit
             const editInput = document.createElement("input");
             editInput.type = "text";
             editInput.value = taskSpan.innerText;
-            editInput.classList.add("inline-edit-input"); // We will style this in CSS
+            editInput.classList.add("inline-edit-input"); //can style this in css
+
+            editInput.addEventListener("keydown", function (event) {
+                if (event.key === "Enter") {
+                    event.preventDefault();
+                    editImg.click(); //this code is letting me press enter and it will save instead of me having to press the save button.
+                }
+            })
 
             li.replaceChild(editInput, taskSpan);
             editInput.focus();
@@ -77,7 +92,7 @@ function addTask() {
                 li.replaceChild(taskSpan, editInput);
 
                 editImg.alt = "Edit";
-                editImg.src = "https://cdn-icons-png.flaticon.com/512/1827/1827933.png"; // Switch back to edit icon
+                editImg.src = "https://cdn-icons-png.flaticon.com/512/1827/1827933.png"; //switch back to the edit icon
             } else {
                 notification.innerText = "Task cannot be empty!";
             }
