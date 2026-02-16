@@ -104,4 +104,16 @@ h4 {
     margin-right: 30px;
     accent-color: lightblue;
 }
+.inline-edit-input {
+    flex: 1;
+    border: 1px solid lightblue;
+    border-radius: 5px;
+    padding: 5px;
+    font-size: 18px;
+    font-family: inherit;
+    outline: none;
+}
 
+ul li {
+    min-height: 60px;
+}

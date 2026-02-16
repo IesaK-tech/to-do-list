@@ -54,31 +54,32 @@ function addTask() {
 
 
 
-    deleteImg.addEventListener("click", function () {
-        list.removeChild(li);
-    });
-
-
     editImg.addEventListener("click", function () {
         if (editImg.alt === "Edit") {
-            input.value = taskSpan.innerText;
-            input.focus();
+            // this switches to edit mode when I press the edit button
             editImg.alt = "Save";
+            editImg.src = "https://cdn-icons-png.flaticon.com/512/190/190411.png"; // Optional: Change icon to a checkmark/save
+
+            // Adds an input field so
+            const editInput = document.createElement("input");
+            editInput.type = "text";
+            editInput.value = taskSpan.innerText;
+            editInput.classList.add("inline-edit-input"); // We will style this in CSS
+
+            li.replaceChild(editInput, taskSpan);
+            editInput.focus();
         } else {
-            taskSpan.innerText = input.value;
-            input.value = "";
-            editImg.alt = "Edit";
-        }
+            const editInput = li.querySelector(".inline-edit-input");
+            const updatedText = editInput.value.trim();
 
-        checkbox.addEventListener("change", function () {
-            if (this.checked) {
-                taskSpan.style.textDecoration = "line-through";
-                taskSpan.style.color = "#888";
+            if (updatedText !== "") {
+                taskSpan.innerText = updatedText;
+                li.replaceChild(taskSpan, editInput);
+
+                editImg.alt = "Edit";
+                editImg.src = "https://cdn-icons-png.flaticon.com/512/1827/1827933.png"; // Switch back to edit icon
             } else {
-                taskSpan.style.textDecoration = "none";
-                taskSpan.style.color = "black";
+                notification.innerText = "Task cannot be empty!";
             }
-        })
-    });
-
-}
+        }
+    })}
