@@ -36,6 +36,7 @@ body {
     border-radius: 30px;
     padding-left: 20px;
     margin-bottom: 20px;
+    overflow: hidden;
 }
 
 .todo-body input {
@@ -54,28 +55,8 @@ body {
     width: 55px;
     padding: 15px;
     background: lightblue;
-}
-
-ul li {
-    list-style: none;
-    font-size: 18px;
-    padding: 12px 20px;
-    background: #edeef0;
-    cursor: pointer;
-    margin-bottom: 10px;
-    border-radius: 15px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-li {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: white;
-    margin-bottom: 10px;
-    border-radius: 5px;
+    display: block;      /* Removes the 'inline' text behavior */
+    user-select: none;   /* Prevents the cursor from appearing on click */
 }
 
 h4 {
@@ -91,8 +72,10 @@ h4 {
     padding: 3px;
     margin-left: 10px;
     transition: 0.2s;
+    display: block;
+    user-select: none;
+    -webkit-user-drag: none;
 }
-
 .todo-controls:hover {
     transform: scale(1.1);
 }
@@ -100,9 +83,9 @@ h4 {
 .task-checkbox {
     width: 25px;
     height: 25px;
-    cursor: pointer;
     margin-right: 30px;
     accent-color: lightblue;
+    user-select: none;
 }
 .inline-edit-input {
     flex: 1;
@@ -113,7 +96,21 @@ h4 {
     font-family: inherit;
     outline: none;
 }
-
 ul li {
+    list-style: none;
+    font-size: 18px;
+    padding: 12px 20px;
+    background: #edeef0;
+    margin-bottom: 10px;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     min-height: 60px;
+    user-select: none;
+}
+
+ul li span {
+    flex: 1;
+    cursor: default;
 }

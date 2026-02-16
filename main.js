@@ -58,7 +58,7 @@ function addTask() {
         if (editImg.alt === "Edit") {
             // this switches to edit mode when I press the edit button
             editImg.alt = "Save";
-            editImg.src = "https://cdn-icons-png.flaticon.com/512/190/190411.png"; // Optional: Change icon to a checkmark/save
+            editImg.src = "https://icon-library.com/images/2018/1740647_tick-mark-check-icon-transparent-png.png";
 
             // Adds an input field so
             const editInput = document.createElement("input");
